@@ -6,9 +6,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from '../api/axios'
+import { Link, useLocation, Navigate } from 'react-router-dom'
 
-const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
 const REGISTER_URL = '/api/auth/register'
 
 const Register = () => {
@@ -35,11 +34,11 @@ const Register = () => {
     }, [])
 
     useEffect(() => {
-        setValidName(USER_REGEX.test(user))
+        setValidName(user.length >= 4 && user.length <= 24)
     }, [user])
 
     useEffect(() => {
-        setValidPwd(PWD_REGEX.test(pwd))
+        setValidPwd(pwd.length >= 4 && pwd.length <= 24)
         setValidMatch(pwd === matchPwd)
     }, [pwd, matchPwd])
 
@@ -47,15 +46,10 @@ const Register = () => {
         setErrMsg('')
     }, [user, pwd, matchPwd])
 
+    const location = useLocation()
+
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // if button enabled with JS hack
-        const v1 = USER_REGEX.test(user)
-        const v2 = PWD_REGEX.test(pwd)
-        if (!v1 || !v2) {
-            setErrMsg('Invalid Entry')
-            return
-        }
         try {
             const response = await axios.post(
                 REGISTER_URL,
@@ -89,12 +83,7 @@ const Register = () => {
     return (
         <>
             {success ? (
-                <section>
-                    <h1>Success!</h1>
-                    <p>
-                        <a href="#">Sign In</a>
-                    </p>
-                </section>
+                <Navigate to="/login" state={{ from: location }} replace />
             ) : (
                 <section>
                     <p
@@ -104,10 +93,10 @@ const Register = () => {
                     >
                         {errMsg}
                     </p>
-                    <h1>Register</h1>
+                    <h1>Регистрация</h1>
                     <form onSubmit={handleSubmit}>
                         <label htmlFor="username">
-                            Username:
+                            Имя пользователя:
                             <FontAwesomeIcon
                                 icon={faCheck}
                                 className={validName ? 'valid' : 'hide'}
@@ -141,15 +130,11 @@ const Register = () => {
                             }
                         >
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            4 to 24 characters.
-                            <br />
-                            Must begin with a letter.
-                            <br />
-                            Letters, numbers, underscores, hyphens allowed.
+                            от 4-x до 24-x символов
                         </p>
 
                         <label htmlFor="password">
-                            Password:
+                            Пароль:
                             <FontAwesomeIcon
                                 icon={faCheck}
                                 className={validPwd ? 'valid' : 'hide'}
@@ -181,21 +166,11 @@ const Register = () => {
                             }
                         >
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            8 to 24 characters.
-                            <br />
-                            Must include uppercase and lowercase letters, a
-                            number and a special character.
-                            <br />
-                            Allowed special characters:{' '}
-                            <span aria-label="exclamation mark">!</span>{' '}
-                            <span aria-label="at symbol">@</span>{' '}
-                            <span aria-label="hashtag">#</span>{' '}
-                            <span aria-label="dollar sign">$</span>{' '}
-                            <span aria-label="percent">%</span>
+                            от 4-x до 24-x символов
                         </p>
 
                         <label htmlFor="confirm_pwd">
-                            Confirm Password:
+                            Повторите пароль:
                             <FontAwesomeIcon
                                 icon={faCheck}
                                 className={
@@ -229,7 +204,7 @@ const Register = () => {
                             }
                         >
                             <FontAwesomeIcon icon={faInfoCircle} />
-                            Must match the first password input field.
+                            должно совпадать с паролем
                         </p>
 
                         <button
@@ -239,15 +214,14 @@ const Register = () => {
                                     : false
                             }
                         >
-                            Sign Up
+                            Зарегестрироваться
                         </button>
                     </form>
                     <p>
-                        Already registered?
+                        Уже зарегестрированы?
                         <br />
                         <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign In</a>
+                            <Link to="/login">Войти</Link>
                         </span>
                     </p>
                 </section>

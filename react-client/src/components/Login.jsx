@@ -1,11 +1,13 @@
-import { useRef, useState, useEffect, useContext } from 'react'
-import AuthContext from '../context/AuthProvider'
+import { useRef, useState, useEffect } from 'react'
+import useAuth from '../hooks/useAuth'
+import { Link, useLocation, Navigate } from 'react-router-dom'
 
 import axios from '../api/axios'
 const LOGIN_URL = 'api/auth/login'
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext)
+    const { setAuth } = useAuth()
+
     const userRef = useRef()
     const errRef = useRef()
 
@@ -13,6 +15,8 @@ const Login = () => {
     const [pwd, setPwd] = useState('')
     const [errMsg, setErrMsg] = useState('')
     const [success, setSuccess] = useState(false)
+
+    const location = useLocation()
 
     useEffect(() => {
         userRef.current.focus()
@@ -60,13 +64,7 @@ const Login = () => {
     return (
         <>
             {success ? (
-                <section>
-                    <h1>You are logged in!</h1>
-                    <br />
-                    <p>
-                        <a href="#">Go to Home</a>
-                    </p>
-                </section>
+                <Navigate to="/home" state={{ from: location }} replace />
             ) : (
                 <section>
                     <p
@@ -76,9 +74,9 @@ const Login = () => {
                     >
                         {errMsg}
                     </p>
-                    <h1>Sign In</h1>
+                    <h1>Войти</h1>
                     <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">Username:</label>
+                        <label htmlFor="username">Имя пользователя:</label>
                         <input
                             type="text"
                             id="username"
@@ -89,7 +87,7 @@ const Login = () => {
                             required
                         />
 
-                        <label htmlFor="password">Password:</label>
+                        <label htmlFor="password">Пароль:</label>
                         <input
                             type="password"
                             id="password"
@@ -97,14 +95,13 @@ const Login = () => {
                             value={pwd}
                             required
                         />
-                        <button>Sign In</button>
+                        <button>Войти</button>
                     </form>
                     <p>
-                        Need an Account?
+                        Нет аккаунта?
                         <br />
                         <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign Up</a>
+                            <Link to="/register">Зарегестрироваться</Link>
                         </span>
                     </p>
                 </section>

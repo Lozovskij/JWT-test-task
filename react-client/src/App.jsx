@@ -4,6 +4,7 @@ import Layout from './components/Layout'
 import Missing from './components/Missing'
 import Unauthorized from './components/Unauthorized'
 import Home from './components/Home'
+import RequireAuth from './components/RequireAuth'
 import { Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -18,6 +19,10 @@ function App() {
                 <Route path="unauthorized" element={<Unauthorized />} />
 
                 {/* we want to protect these routes */}
+                <Route element={<RequireAuth />}>
+                    <Route path="home" element={<Home />} />
+                </Route>
+
                 {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
                     <Route path="/" element={<Home />} />
                 </Route>
