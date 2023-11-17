@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
-import { Link, useLocation, Navigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import axios from '../api/axios'
 const LOGIN_URL = 'api/auth/login'
@@ -8,15 +8,16 @@ const LOGIN_URL = 'api/auth/login'
 const Login = () => {
     const { setAuth } = useAuth()
 
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/home'
+
     const userRef = useRef()
     const errRef = useRef()
 
     const [user, setUser] = useState('')
     const [pwd, setPwd] = useState('')
     const [errMsg, setErrMsg] = useState('')
-    const [success, setSuccess] = useState(false)
-
-    const location = useLocation()
 
     useEffect(() => {
         userRef.current.focus()
@@ -39,14 +40,12 @@ const Login = () => {
                 }
             )
             console.log(JSON.stringify(response?.data))
-            //console.log(JSON.stringify(response));
-
             const accessToken = response?.data?.token
             // const roles = response?.data?.roles
             setAuth({ user, pwd, accessToken })
             setUser('')
             setPwd('')
-            setSuccess(true)
+            navigate(from, { replace: true })
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('No Server Response')
@@ -62,51 +61,45 @@ const Login = () => {
     }
 
     return (
-        <>
-            {success ? (
-                <Navigate to="/home" state={{ from: location }} replace />
-            ) : (
-                <section>
-                    <p
-                        ref={errRef}
-                        className={errMsg ? 'errmsg' : 'offscreen'}
-                        aria-live="assertive"
-                    >
-                        {errMsg}
-                    </p>
-                    <h1>Войти</h1>
-                    <form onSubmit={handleSubmit}>
-                        <label htmlFor="username">Имя пользователя:</label>
-                        <input
-                            type="text"
-                            id="username"
-                            ref={userRef}
-                            autoComplete="off"
-                            onChange={(e) => setUser(e.target.value)}
-                            value={user}
-                            required
-                        />
+        <section>
+            <p
+                ref={errRef}
+                className={errMsg ? 'errmsg' : 'offscreen'}
+                aria-live="assertive"
+            >
+                {errMsg}
+            </p>
+            <h1>Войти</h1>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Имя пользователя:</label>
+                <input
+                    type="text"
+                    id="username"
+                    ref={userRef}
+                    autoComplete="off"
+                    onChange={(e) => setUser(e.target.value)}
+                    value={user}
+                    required
+                />
 
-                        <label htmlFor="password">Пароль:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            onChange={(e) => setPwd(e.target.value)}
-                            value={pwd}
-                            required
-                        />
-                        <button>Войти</button>
-                    </form>
-                    <p>
-                        Нет аккаунта?
-                        <br />
-                        <span className="line">
-                            <Link to="/register">Зарегестрироваться</Link>
-                        </span>
-                    </p>
-                </section>
-            )}
-        </>
+                <label htmlFor="password">Пароль:</label>
+                <input
+                    type="password"
+                    id="password"
+                    onChange={(e) => setPwd(e.target.value)}
+                    value={pwd}
+                    required
+                />
+                <button>Войти</button>
+            </form>
+            <p>
+                Нужен аккаунт?
+                <br />
+                <span className="line">
+                    <Link to="/register">Зарегестрироваться</Link>
+                </span>
+            </p>
+        </section>
     )
 }
 
