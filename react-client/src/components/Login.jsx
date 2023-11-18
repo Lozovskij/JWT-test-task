@@ -10,7 +10,8 @@ const Login = () => {
 
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location.state?.from?.pathname || '/home'
+    // const from = location.state?.from?.pathname || '/home' //doesn't work for registration
+    const from = '/home'
 
     const userRef = useRef()
     const errRef = useRef()
@@ -39,8 +40,7 @@ const Login = () => {
                     withCredentials: true,
                 }
             )
-            console.log(JSON.stringify(response?.data))
-            const accessToken = response?.data?.token
+            const accessToken = response?.data
             // const roles = response?.data?.roles
             setAuth({ user, pwd, accessToken })
             setUser('')
