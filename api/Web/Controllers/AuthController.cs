@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -29,15 +29,6 @@ public class AuthController : ControllerBase
     public ActionResult<string> GetMyName()
     {
         return Ok(_userService.GetMyName());
-
-        //var userName = User?.Identity?.Name;
-        //var roleClaims = User?.FindAll(ClaimTypes.Role);
-        //var roles = roleClaims?.Select(c => c.Value).ToList();
-        //var roles2 = User?.Claims
-        //    .Where(c => c.Type == ClaimTypes.Role)
-        //    .Select(c => c.Value)
-        //    .ToList();
-        //return Ok(new { userName, roles, roles2 });
     }
 
     [HttpPost("register")]
