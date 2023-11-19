@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using Core.Abstractions;
+using System.Security.Claims;
 
 namespace Web.Services;
 
@@ -11,7 +12,7 @@ public class UserService : IUserService
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public string GetMyName()
+    public string GetUsername()
     {
         var result = string.Empty;
         if (_httpContextAccessor.HttpContext is not null)
