@@ -23,7 +23,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, R
 
         string passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
         var user = new User() { PasswordHash = passwordHash, Username = request.Username };
-        await _uow.UsersRepository.AddUserAsync(user, cancellationToken);
+        await _uow.UsersRepository.AddAsync(user, cancellationToken);
 
         await _uow.CompleteAsync();
         return user;

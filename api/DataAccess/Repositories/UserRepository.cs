@@ -12,7 +12,7 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public async Task AddUserAsync(User user, CancellationToken cancellationToken)
+    public async Task AddAsync(User user, CancellationToken cancellationToken)
     {
         await _context.Users.AddAsync(user, cancellationToken);
     }
@@ -24,7 +24,7 @@ public class UserRepository : IUserRepository
         user.TokenExpires = expires;
     }
 
-    public async Task<User?> TryGetUserByNameAsync(string username, CancellationToken cancellationToken)
+    public async Task<User?> TryGetByNameAsync(string username, CancellationToken cancellationToken)
     {
         return await _context.Users.FirstOrDefaultAsync(u => u.Username == username, cancellationToken);
     }

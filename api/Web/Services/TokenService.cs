@@ -27,6 +27,8 @@ public class TokenService : ITokenService
     public string CreateAccessToken(string username)
     {
         var sectionKey = "AppSettings:Token";
+        var expires = DateTime.UtcNow.AddHours(2);
+
         List<Claim> claims = new List<Claim> {
             new Claim(ClaimTypes.Name, username),
         };
@@ -39,7 +41,7 @@ public class TokenService : ITokenService
         var token = new JwtSecurityToken(
                 claims: claims,
                 notBefore: DateTime.UtcNow,
-                expires: DateTime.UtcNow.AddSeconds(10),
+                expires: expires,
                 signingCredentials: creds
             ); ;
 

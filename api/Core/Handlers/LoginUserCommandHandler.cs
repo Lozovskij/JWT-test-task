@@ -17,7 +17,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, Result<
 
     public async Task<Result<string, Error>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await _uow.UsersRepository.TryGetUserByNameAsync(request.Username, cancellationToken);
+        var user = await _uow.UsersRepository.TryGetByNameAsync(request.Username, cancellationToken);
         if (user == null)
         {
             return new Error("User not found", HttpStatusCode.NotFound);

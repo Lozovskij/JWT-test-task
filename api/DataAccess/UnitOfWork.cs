@@ -12,13 +12,16 @@ public class UnitOfWork : IUnitOfWork, IDisposable
     private readonly DataContext _context;
 
     public IUserRepository UsersRepository { get; private set; }
+    public IUserRequestRepository UserRequestRepository { get; private set; }
 
     public UnitOfWork(
         DataContext context,
-        IUserRepository userRepository)
+        IUserRepository userRepository,
+        IUserRequestRepository userRequestRepository)
     {
         _context = context;
         UsersRepository = userRepository;
+        UserRequestRepository = userRequestRepository;
     }
 
     public async Task CompleteAsync()

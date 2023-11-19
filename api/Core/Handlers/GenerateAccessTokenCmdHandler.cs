@@ -3,12 +3,12 @@ using MediatR;
 
 namespace Core.Handlers;
 
-public class GenerateAccessTokenHandler : IRequestHandler<GenerateAccessTokenCommand, Result<string, Error>>
+public class GenerateAccessTokenCmdHandler : IRequestHandler<GenerateAccessTokenCommand, Result<string, Error>>
 {
     private readonly ITokenService _tokenService;
     private readonly IUnitOfWork _unitOfWork;
 
-    public GenerateAccessTokenHandler(ITokenService tokenService, IUnitOfWork unitOfWork)
+    public GenerateAccessTokenCmdHandler(ITokenService tokenService, IUnitOfWork unitOfWork)
     {
         _tokenService = tokenService;
         _unitOfWork = unitOfWork;
@@ -17,7 +17,7 @@ public class GenerateAccessTokenHandler : IRequestHandler<GenerateAccessTokenCom
     public async Task<Result<string, Error>> Handle(GenerateAccessTokenCommand request, CancellationToken cancellationToken)
     {
         var refreshToken = _tokenService.GetCurrentRefreshToken();
-        var user = await _unitOfWork.UsersRepository.TryGetUserByNameAsync(request.Username, cancellationToken);
+        var user = await _unitOfWork.UsersRepository.TryGetByNameAsync(request.Username, cancellationToken);
         if (user == null)
         {
             return new Error("Can't find the user. Something went wrong", HttpStatusCode.NotFound);
