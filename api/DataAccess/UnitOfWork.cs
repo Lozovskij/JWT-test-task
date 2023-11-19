@@ -1,9 +1,4 @@
 ﻿using Core.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess;
 
@@ -13,15 +8,18 @@ public class UnitOfWork : IUnitOfWork, IDisposable
 
     public IUserRepository UsersRepository { get; private set; }
     public IUserRequestRepository UserRequestRepository { get; private set; }
+    public IRequestRepository RequestRepository { get; private set; }
 
     public UnitOfWork(
         DataContext context,
         IUserRepository userRepository,
-        IUserRequestRepository userRequestRepository)
+        IUserRequestRepository userRequestRepository,
+        IRequestRepository requestRepository)
     {
         _context = context;
         UsersRepository = userRepository;
         UserRequestRepository = userRequestRepository;
+        RequestRepository = requestRepository;
     }
 
     public async Task CompleteAsync()
