@@ -1,7 +1,10 @@
+using DataAccess;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
+using Web;
 using Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +48,10 @@ builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
     build.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
 }));
 
+builder.Services.AddDbContext<DataContext>(
+    o => o.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection")));
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -61,5 +68,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Seed();
 
 app.Run();
