@@ -48,13 +48,13 @@ const Login = () => {
             navigate(from, { replace: true })
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response')
+                setErrMsg('Сервер не отвечает')
             } else if (err.response?.status === 400) {
-                setErrMsg('Missing Username or Password')
+                setErrMsg('Логин или пароль введен неверно')
             } else if (err.response?.status === 401) {
-                setErrMsg('Unauthorized')
+                setErrMsg('Ошибка авторизации')
             } else {
-                setErrMsg('Login Failed')
+                setErrMsg('Что-то пошло не так')
             }
             errRef.current.focus()
         }

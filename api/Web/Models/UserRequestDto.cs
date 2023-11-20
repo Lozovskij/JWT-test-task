@@ -10,6 +10,7 @@ public class UserRequestDto
     public string? UserComment { get; set; }
     public DateTime CreatedDate { get; set; }
     public string RequestDescription { get; set; } = null!;
+    public RequestStatus RequestStatus { get; set; }
 
     public UserRequestDto() { }
 
@@ -21,5 +22,6 @@ public class UserRequestDto
         UserComment = userRequest.UserComment;
         CreatedDate = userRequest.CreatedDate;
         RequestDescription = userRequest.Request.Description;
+        RequestStatus = userRequest.Status;
     }
 }

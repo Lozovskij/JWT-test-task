@@ -172,3 +172,7 @@ button {
 .user-request__cancel-button {
     margin-bottom: auto;
 }
+
+.status {
+    text-wrap: nowrap;
+}

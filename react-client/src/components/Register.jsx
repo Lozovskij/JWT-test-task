@@ -67,11 +67,11 @@ const Register = () => {
             setMatchPwd('')
         } catch (err) {
             if (!err?.response) {
-                setErrMsg('No Server Response')
+                setErrMsg('Сервер не отвечает')
             } else if (err.response?.status === 409) {
-                setErrMsg('Username Taken')
+                setErrMsg('Имя занято')
             } else {
-                setErrMsg('Registration Failed')
+                setErrMsg('Ошибка')
             }
             errRef.current.focus()
         }

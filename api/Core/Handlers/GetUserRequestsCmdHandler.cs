@@ -24,7 +24,7 @@ public class GetUserRequestsCmdHandler : IRequestHandler<GetUserRequestsCommand,
             return new Error("Can't find the user by username", HttpStatusCode.NotFound);
         }
         var userRequests = await _uow.UserRequestRepository.GetActiveRequestsByUserIdAsync(user.Id, cancellationToken);
-        return userRequests.ToList();
+        return userRequests.OrderByDescending(ur => ur.CreatedDate).ToList();
     }
 }
 
