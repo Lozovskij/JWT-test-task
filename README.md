@@ -28,3 +28,8 @@ npm i
 npm run dev
 ```
 ## Скриншоты
+![localhost_5173_home](https://github.com/Lozovskij/JWT-test-task/assets/56762093/4e561f39-371a-4f31-bdfd-156ef07f7a98)
+![localhost_5173_home (1)](https://github.com/Lozovskij/JWT-test-task/assets/56762093/130d86aa-5dbb-46c5-af1e-f4f01a610f22)
+![localhost_5173_home (2)](https://github.com/Lozovskij/JWT-test-task/assets/56762093/fcc16ea0-b998-4f57-8af7-15de4a9123ce)
+![localhost_5173_home (4)](https://github.com/Lozovskij/JWT-test-task/assets/56762093/9ae8a81f-1fae-4f39-baf5-70bb9cf4f5d4)
+![localhost_5173_home (5)](https://github.com/Lozovskij/JWT-test-task/assets/56762093/a40769d6-6441-424d-8f23-ca8bbc3c77b9)
