@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import { useState } from 'react'
 import useAuth from '../hooks/useAuth'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
@@ -8,6 +8,7 @@ const UserRequestFrom = () => {
     const { request } = location.state
     const [comment, setComment] = useState('')
     const { auth } = useAuth()
+    const [success, setSuccess] = useState(false)
 
     const axiosPrivate = useAxiosPrivate()
 
@@ -27,7 +28,7 @@ const UserRequestFrom = () => {
                     RequestId: request.requestId,
                 })
             )
-            console.log('Response:', response.data)
+            setSuccess(true)
         } catch (error) {
             console.log(error)
         }
@@ -35,16 +36,25 @@ const UserRequestFrom = () => {
 
     return (
         <>
-            <h3>{request.description}</h3>
+            {success ? (
+                <>
+                    <h1>Запрос успешно оформлен</h1>
+                    <Link to="/my-requests">Мои запросы</Link>
+                </>
+            ) : (
+                <>
+                    <h3>{request.description}</h3>
 
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Опишите вашу проблему (опционально):
-                    <br></br>
-                    <textarea value={comment} onChange={handleChange} />
-                </label>
-                <button type="submit">Submit</button>
-            </form>
+                    <form onSubmit={handleSubmit}>
+                        <label>
+                            Опишите вашу проблему (опционально):
+                            <br></br>
+                            <textarea value={comment} onChange={handleChange} />
+                        </label>
+                        <button type="submit">Submit</button>
+                    </form>
+                </>
+            )}
         </>
     )
 }
