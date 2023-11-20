@@ -132,3 +132,11 @@ button {
 .header-links__placeholder {
     flex: 1;
 }
+
+.request-item {
+    margin-top: 0.5rem;
+}
+
+.requests {
+    margin-top: 2rem;
+}

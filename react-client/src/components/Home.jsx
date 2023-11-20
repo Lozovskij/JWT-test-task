@@ -40,9 +40,10 @@ const Home = () => {
             <button onClick={() => test()}>get user name to the console</button> */}
             <div>
                 <h1>Выберите запрос / проблему</h1>
-                <ul>
+                <ul className="requests">
                     {requests.map((request) => (
                         <li
+                            className="request-item"
                             key={request.requestId}
                             onClick={() => handleClick(request)}
                         >
