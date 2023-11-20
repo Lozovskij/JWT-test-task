@@ -40,21 +40,27 @@ const UserRequests = () => {
 
     return (
         <div>
-            <h1>Ваши запросы:</h1>
-            <ul>
+            <h3>Ваши запросы:</h3>
+            <div className="user-requests-container">
                 {userRequests.map((ur) => (
                     <>
-                        <li key={ur.requestId}>
-                            {ur.requestDescription}
-                            <br />
-                            Комментарий: {ur.userComment || '-'}
-                        </li>
-                        <button onClick={() => handleCancelClick(ur)}>
-                            Отменить
-                        </button>
+                        <div key={ur.requestId} className="user-request">
+                            <div className="user-request__info">
+                                <p className="user-request__title">
+                                    {ur.requestDescription}
+                                </p>
+                                <div> Комментарий: {ur.userComment || '-'}</div>
+                            </div>
+                            <button
+                                className="user-request__cancel-button"
+                                onClick={() => handleCancelClick(ur)}
+                            >
+                                Отменить
+                            </button>
+                        </div>
                     </>
                 ))}
-            </ul>
+            </div>
         </div>
     )
 }

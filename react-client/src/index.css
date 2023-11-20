@@ -156,3 +156,19 @@ button {
     box-sizing: border-box;
     height: 160px;
 }
+
+.user-request {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+    border-bottom: 1px solid gray;
+}
+
+.user-request__title {
+    font-weight: 600;
+    color: #4d4d4d;
+}
+
+.user-request__cancel-button {
+    margin-bottom: auto;
+}

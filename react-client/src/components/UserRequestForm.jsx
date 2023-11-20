@@ -50,7 +50,7 @@ const UserRequestFrom = () => {
 
                     <form className="user-request-form" onSubmit={handleSubmit}>
                         <label>
-                            Опишите вашу проблему (опционально):
+                            Опишите Вашу проблему (опционально):
                             <br></br>
                             <textarea
                                 className="user-request-form__textarea"
