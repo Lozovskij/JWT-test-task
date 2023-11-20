@@ -61,45 +61,47 @@ const Login = () => {
     }
 
     return (
-        <section>
-            <p
-                ref={errRef}
-                className={errMsg ? 'errmsg' : 'offscreen'}
-                aria-live="assertive"
-            >
-                {errMsg}
-            </p>
-            <h1>Войти</h1>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="username">Имя пользователя:</label>
-                <input
-                    type="text"
-                    id="username"
-                    ref={userRef}
-                    autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
-                    required
-                />
+        <div className="form-container">
+            <section className="form-section ">
+                <p
+                    ref={errRef}
+                    className={errMsg ? 'errmsg' : 'offscreen'}
+                    aria-live="assertive"
+                >
+                    {errMsg}
+                </p>
+                <h1>Войти</h1>
+                <form className="login-form" onSubmit={handleSubmit}>
+                    <label htmlFor="username">Имя пользователя:</label>
+                    <input
+                        type="text"
+                        id="username"
+                        ref={userRef}
+                        autoComplete="off"
+                        onChange={(e) => setUser(e.target.value)}
+                        value={user}
+                        required
+                    />
 
-                <label htmlFor="password">Пароль:</label>
-                <input
-                    type="password"
-                    id="password"
-                    onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
-                    required
-                />
-                <button>Войти</button>
-            </form>
-            <p>
-                Нужен аккаунт?
-                <br />
-                <span className="line">
-                    <Link to="/register">Зарегестрироваться</Link>
-                </span>
-            </p>
-        </section>
+                    <label htmlFor="password">Пароль:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        onChange={(e) => setPwd(e.target.value)}
+                        value={pwd}
+                        required
+                    />
+                    <button>Войти</button>
+                </form>
+                <p>
+                    Нужен аккаунт?
+                    <br />
+                    <span className="line">
+                        <Link to="/register">Зарегестрироваться</Link>
+                    </span>
+                </p>
+            </section>
+        </div>
     )
 }
 
