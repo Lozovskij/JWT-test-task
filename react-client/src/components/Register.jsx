@@ -91,7 +91,7 @@ const Register = () => {
                         {errMsg}
                     </p>
                     <h1>Регистрация</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form className="registration-form" onSubmit={handleSubmit}>
                         <label htmlFor="username">
                             Имя пользователя:
                             <FontAwesomeIcon
@@ -126,7 +126,6 @@ const Register = () => {
                                     : 'offscreen'
                             }
                         >
-                            <FontAwesomeIcon icon={faInfoCircle} />
                             от 4-x до 24-x символов
                         </p>
 
@@ -162,7 +161,6 @@ const Register = () => {
                                     : 'offscreen'
                             }
                         >
-                            <FontAwesomeIcon icon={faInfoCircle} />
                             от 4-x до 24-x символов
                         </p>
 
@@ -200,7 +198,6 @@ const Register = () => {
                                     : 'offscreen'
                             }
                         >
-                            <FontAwesomeIcon icon={faInfoCircle} />
                             должно совпадать с паролем
                         </p>
 

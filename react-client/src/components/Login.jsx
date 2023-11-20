@@ -70,7 +70,7 @@ const Login = () => {
                 {errMsg}
             </p>
             <h1>Войти</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="username">Имя пользователя:</label>
                 <input
                     type="text"

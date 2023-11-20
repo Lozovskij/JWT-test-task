@@ -9,45 +9,15 @@
 html {
     font-family: 'Nunito', sans-serif;
     font-size: 22px;
-    color: #fff;
 }
 
-body {
-    /* min-height: 100vh; */
-    background-color: dodgerblue;
-}
-
-.App {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 80vh;
-    padding: 1rem 0.5rem;
-}
-
-section {
-    width: 100%;
-    max-width: 420px;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 1rem;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-form {
+.login-form,
+.registration-form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     flex-grow: 1;
     padding-bottom: 1rem;
-}
-
-a,
-a:visited {
-    color: #fff;
 }
 
 input[type='text'],
@@ -67,16 +37,18 @@ button {
 
 button {
     padding: 0.5rem;
+    cursor: pointer;
 }
 
 .instructions {
-    font-size: 0.75rem;
+    /* font-size: 0.75rem; */
     border-radius: 0.5rem;
-    background: #000;
-    color: #fff;
+    /* background: #000;
+    color: #fff; */
     padding: 0.25rem;
     position: relative;
     bottom: -10px;
+    color: rgb(103, 0, 0);
 }
 
 .instructions > svg {
