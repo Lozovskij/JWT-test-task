@@ -12,7 +12,7 @@ const Header = () => {
     return (
         <header>
             <nav>
-                {auth?.user ? (
+                {auth?.user && (
                     <ul>
                         <li>
                             <Link to="/home">Главная страница</Link>
@@ -22,15 +22,6 @@ const Header = () => {
                         </li>
                         <li>
                             <button onClick={logout}>Выйти</button>
-                        </li>
-                    </ul>
-                ) : (
-                    <ul>
-                        <li>
-                            <Link to="/register">Регистрация</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">Войти</Link>
                         </li>
                     </ul>
                 )}
