@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const UserRequests = () => {
     const axiosPrivate = useAxiosPrivate()
     const [userRequests, setUserRequests] = useState([])
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const fetchData = async () => {
         try {
