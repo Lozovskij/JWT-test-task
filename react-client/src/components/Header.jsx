@@ -17,7 +17,9 @@ const Header = () => {
                         <li>
                             <Link to="/home">Главная страница</Link>
                         </li>
-                        <li>Мои запросы</li>
+                        <li>
+                            <Link to="/my-requests">Мои запросы</Link>
+                        </li>
                         <li>
                             <button onClick={logout}>Выйти</button>
                         </li>

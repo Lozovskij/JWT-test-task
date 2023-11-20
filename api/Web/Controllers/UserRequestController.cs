@@ -32,11 +32,11 @@ public class UserRequestController : ControllerBase
     }
 
     [HttpPost("create")]
-    public async Task<ActionResult<UserRequestDto>> Create(UserRequestDto request, CancellationToken cancellationToken)
+    public async Task<ActionResult> Create(CreateUserRequestDto request, CancellationToken cancellationToken)
     {
         var command = new CreateUserRequestCommand(request.Username, request.RequestId, request.UserComment);
         var result = await _mediator.Send(command, cancellationToken);
-        return result.Match(ur => Ok(new UserRequestDto(ur)), e => StatusCode((int)e.StatusCode, e.Message));
+        return result.Match<ActionResult>(_ => NoContent(), e => StatusCode((int)e.StatusCode, e.Message));
     }
 
     [HttpPost("cancel")]

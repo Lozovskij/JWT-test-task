@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background-color: dodgerblue;
 }
 
@@ -22,7 +22,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     padding: 1rem 0.5rem;
 }
 

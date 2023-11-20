@@ -2,10 +2,11 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Layout from './components/Layout'
 import Missing from './components/Missing'
-import Unauthorized from './components/Unauthorized'
 import Home from './components/Home'
 import RequireAuth from './components/RequireAuth'
 import { Routes, Route } from 'react-router-dom'
+import UserRequestFrom from './components/UserRequestForm'
+import UserRequests from './components/UserRequests'
 
 function App() {
     return (
@@ -15,35 +16,13 @@ function App() {
                 <Route path="/" element={<Login />} />
                 <Route path="login" element={<Login />} />
                 <Route path="register" element={<Register />} />
-                {/* <Route path="linkpage" element={<LinkPage />} /> */}
-                <Route path="unauthorized" element={<Unauthorized />} />
 
                 {/* we want to protect these routes */}
                 <Route element={<RequireAuth />}>
                     <Route path="home" element={<Home />} />
+                    <Route path="request" element={<UserRequestFrom />} />
+                    <Route path="my-requests" element={<UserRequests />} />
                 </Route>
-
-                {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-                    <Route path="/" element={<Home />} />
-                </Route>
-
-                <Route element={<RequireAuth allowedRoles={[ROLES.Editor]} />}>
-                    <Route path="editor" element={<Editor />} />
-                </Route>
-
-                <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
-                    <Route path="admin" element={<Admin />} />
-                </Route>
-
-                <Route
-                    element={
-                        <RequireAuth
-                            allowedRoles={[ROLES.Editor, ROLES.Admin]}
-                        />
-                    }
-                >
-                    <Route path="lounge" element={<Lounge />} />
-                </Route> */}
 
                 {/* catch all */}
                 <Route path="*" element={<Missing />} />

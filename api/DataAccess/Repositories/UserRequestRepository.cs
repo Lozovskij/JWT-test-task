@@ -20,7 +20,7 @@ public class UserRequestRepository : IUserRequestRepository
 
     public async Task<IEnumerable<UserRequest>> GetActiveRequestsByUserIdAsync(int id, CancellationToken cancellationToken)
     {
-        return await _context.UserRequests
+        return await _context.UserRequests.Include(ur => ur.Request)
             .Where(ur => ur.Status == RequestStatus.Active && ur.UserId == id)
             .ToListAsync(cancellationToken);
     }
