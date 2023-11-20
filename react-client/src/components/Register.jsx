@@ -210,6 +210,7 @@ const Register = () => {
                             </p>
 
                             <button
+                                className="form-submit-button"
                                 disabled={
                                     !validName || !validPwd || !validMatch
                                         ? true

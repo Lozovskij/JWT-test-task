@@ -91,7 +91,7 @@ const Login = () => {
                         value={pwd}
                         required
                     />
-                    <button>Войти</button>
+                    <button className="form-submit-button">Войти</button>
                 </form>
                 <p>
                     Нужен аккаунт?

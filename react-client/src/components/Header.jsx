@@ -13,14 +13,15 @@ const Header = () => {
         <header>
             <nav>
                 {auth?.user && (
-                    <ul>
-                        <li>
+                    <ul className="header-links">
+                        <li className="header-links__home">
                             <Link to="/home">Главная страница</Link>
                         </li>
-                        <li>
+                        <div className="header-links__placeholder"></div>
+                        <li className="header-links__my-requests">
                             <Link to="/my-requests">Мои запросы</Link>
                         </li>
-                        <li>
+                        <li className="header-links__exit">
                             <button onClick={logout}>Выйти</button>
                         </li>
                     </ul>
