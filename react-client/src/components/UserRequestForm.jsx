@@ -39,17 +39,24 @@ const UserRequestFrom = () => {
             {success ? (
                 <>
                     <h1>Запрос успешно оформлен</h1>
-                    <Link to="/my-requests">Мои запросы</Link>
+                    <p>Ваши запросы доступны по ссылке:</p>
+                    <p>
+                        <Link to="/my-requests">Мои запросы</Link>
+                    </p>
                 </>
             ) : (
                 <>
                     <h3>{request.description}</h3>
 
-                    <form onSubmit={handleSubmit}>
+                    <form className="user-request-form" onSubmit={handleSubmit}>
                         <label>
                             Опишите вашу проблему (опционально):
                             <br></br>
-                            <textarea value={comment} onChange={handleChange} />
+                            <textarea
+                                className="user-request-form__textarea"
+                                value={comment}
+                                onChange={handleChange}
+                            />
                         </label>
                         <button type="submit">Submit</button>
                     </form>
