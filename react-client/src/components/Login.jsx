@@ -9,8 +9,6 @@ const Login = () => {
     const { setAuth } = useAuth()
 
     const navigate = useNavigate()
-    const location = useLocation()
-    // const from = location.state?.from?.pathname || '/home' //doesn't work for registration
     const from = '/home'
 
     const userRef = useRef()
@@ -41,7 +39,6 @@ const Login = () => {
                 }
             )
             const accessToken = response?.data
-            // const roles = response?.data?.roles
             setAuth({ user, pwd, accessToken })
             setUser('')
             setPwd('')

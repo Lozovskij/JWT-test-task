@@ -1,9 +1,5 @@
 import { useRef, useState, useEffect } from 'react'
-import {
-    faCheck,
-    faTimes,
-    faInfoCircle,
-} from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import axios from '../api/axios'
 import { Link, useLocation, Navigate } from 'react-router-dom'

@@ -1,20 +1,9 @@
 import useAxiosPrivate from '../hooks/useAxiosPrivate'
-import { useNavigate, useLocation, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const Home = () => {
     const axiosPrivate = useAxiosPrivate()
-    const navigate = useNavigate()
-    const location = useLocation()
-    const test = async () => {
-        try {
-            const response = await axiosPrivate.get('/api/auth')
-            console.log(response.data)
-        } catch (err) {
-            console.error(err)
-            navigate('/login', { state: { from: location }, replace: true })
-        }
-    }
 
     const [requests, setRequests] = useState([])
     useEffect(() => {
@@ -24,29 +13,20 @@ const Home = () => {
                 setRequests(response.data)
             } catch (error) {
                 // Handle error
+                console.error(err)
             }
         }
 
         fetchData()
     }, [])
 
-    const handleClick = (request) => {
-        console.log('Clicked Request:', request)
-    }
-
     return (
         <>
-            {/* <h1>Hello world</h1>
-            <button onClick={() => test()}>get user name to the console</button> */}
             <div>
                 <h1>Выберите запрос / проблему</h1>
                 <ul className="requests">
                     {requests.map((request) => (
-                        <li
-                            className="request-item"
-                            key={request.requestId}
-                            onClick={() => handleClick(request)}
-                        >
+                        <li className="request-item" key={request.requestId}>
                             <Link
                                 to={{
                                     pathname: `/request`,
