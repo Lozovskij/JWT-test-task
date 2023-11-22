@@ -1,9 +1,6 @@
-﻿using Core.Abstractions;
-using Core.Handlers;
-using Core.Models;
+﻿using Core.Handlers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 

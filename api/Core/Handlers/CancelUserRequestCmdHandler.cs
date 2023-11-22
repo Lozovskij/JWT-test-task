@@ -1,4 +1,5 @@
 ﻿using Core.Abstractions;
+using Core.Constants;
 using Core.Models;
 using MediatR;
 
@@ -24,11 +25,10 @@ public class CancelUserRequestCmdHandler : IRequestHandler<CancelUserRequestComm
         }
 
         //TODO move to separate auth manager service
-        var username = _userService.GetUsername();
-        var user = await _uow.UsersRepository.TryGetByNameAsync(username, cancellationToken);
+        var user = await _userService.TryGetUser(cancellationToken);
         if (user == null)
         {
-            return new Error("Can't define current user", HttpStatusCode.Unauthorized);
+            return Errors.NoCurrentUser;
         }
         if (user.Id != userRequest.UserId)
         {

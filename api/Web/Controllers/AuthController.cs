@@ -1,8 +1,6 @@
-﻿using Core.Abstractions;
-using Core.Handlers;
+﻿using Core.Handlers;
 using Core.Models;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
@@ -12,19 +10,11 @@ namespace Web.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly IUserService _userService;
     private readonly IMediator _mediator;
 
-    public AuthController(IUserService userService, IMediator mediator)
+    public AuthController(IMediator mediator)
     {
-        _userService = userService;
         _mediator = mediator;
-    }
-
-    [HttpGet, Authorize]
-    public ActionResult<string> GetMyName()
-    {
-        return Ok(_userService.GetUsername());
     }
 
     [HttpPost("register")]

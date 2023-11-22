@@ -10,7 +10,6 @@ namespace Web.Controllers;
 [ApiController]
 public class RequestsController : ControllerBase
 {
-
     private readonly IMediator _mediator;
 
     public RequestsController(IMediator mediator)

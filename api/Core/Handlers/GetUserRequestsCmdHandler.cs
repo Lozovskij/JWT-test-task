@@ -1,4 +1,5 @@
 ﻿using Core.Abstractions;
+using Core.Constants;
 using Core.Models;
 using MediatR;
 
@@ -17,11 +18,10 @@ public class GetUserRequestsCmdHandler : IRequestHandler<GetUserRequestsCommand,
 
     public async Task<Result<List<UserRequest>, Error>> Handle(GetUserRequestsCommand request, CancellationToken cancellationToken)
     {
-        var username = _userService.GetUsername();
-        var user = await _uow.UsersRepository.TryGetByNameAsync(username, cancellationToken);
+        var user = await _userService.TryGetUser(cancellationToken);
         if (user == null)
         {
-            return new Error("Can't find the user by username", HttpStatusCode.NotFound);
+            return Errors.NoCurrentUser;
         }
         var userRequests = await _uow.UserRequestRepository.GetActiveRequestsByUserIdAsync(user.Id, cancellationToken);
         return userRequests.OrderByDescending(ur => ur.CreatedDate).ToList();

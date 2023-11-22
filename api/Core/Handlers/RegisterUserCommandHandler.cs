@@ -1,5 +1,4 @@
-﻿using BCrypt.Net;
-using Core.Abstractions;
+﻿using Core.Abstractions;
 using Core.Models;
 using MediatR;
 

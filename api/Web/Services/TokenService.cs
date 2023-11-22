@@ -29,7 +29,8 @@ public class TokenService : ITokenService
         var sectionKey = "AppSettings:Token";
         var expires = DateTime.UtcNow.AddHours(2);
 
-        List<Claim> claims = new List<Claim> {
+        List<Claim> claims = new()
+        {
             new Claim(ClaimTypes.Name, username),
         };
 
